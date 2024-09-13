@@ -1,6 +1,5 @@
 {
   "name": "spa_react_typescript_hello-world",
-  "homepage": "/build",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
