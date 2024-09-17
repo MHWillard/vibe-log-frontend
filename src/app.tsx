@@ -3,13 +3,12 @@ import React from "react";
 import { PageLoader } from "./components/page-loader";
 import { AuthenticationGuard } from "./components/authentication-guard";
 import { Route, Routes } from "react-router-dom";
-import { AdminPage } from "./pages/admin-page";
 import { CallbackPage } from "./pages/callback-page";
 import { HomePage } from "./pages/home-page";
 import { NotFoundPage } from "./pages/not-found-page";
 import { ProfilePage } from "./pages/profile-page";
-import { ProtectedPage } from "./pages/protected-page";
-import { PublicPage } from "./pages/public-page";
+import { UserFeed } from "./pages/user-feed";
+import {NewPost} from "./pages/new-post";
 
 export const App: React.FC = () => {
   const { isLoading } = useAuth0();
@@ -28,14 +27,13 @@ export const App: React.FC = () => {
         path="/profile"
         element={<AuthenticationGuard component={ProfilePage} />}
       />
-      <Route path="/public" element={<PublicPage />} />
       <Route
-        path="/protected"
-        element={<AuthenticationGuard component={ProtectedPage} />}
+        path="/feed"
+        element={<AuthenticationGuard component={UserFeed} />}
       />
       <Route
-        path="/admin"
-        element={<AuthenticationGuard component={AdminPage} />}
+        path="/new-post"
+        element={<AuthenticationGuard component={NewPost} />}
       />
       <Route path="/callback" element={<CallbackPage />} />
       <Route path="*" element={<NotFoundPage />} />

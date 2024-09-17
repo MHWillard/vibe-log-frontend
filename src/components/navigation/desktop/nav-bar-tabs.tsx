@@ -7,12 +7,12 @@ export const NavBarTabs: React.FC = () => {
 
   return (
     <div className="nav-bar__tabs">
-      <NavBarTab path="/profile" label="Profile" />
       <NavBarTab path="/public" label="Public" />
       {isAuthenticated && (
         <>
-          <NavBarTab path="/protected" label="Protected" />
-          <NavBarTab path="/admin" label="Admin" />
+          <NavBarTab path="/profile" label="Profile" />
+          <NavBarTab path="/user-feed" label="Your Feed" />
+          <NavBarTab path="/new-post" label="New Post" />
         </>
       )}
     </div>
