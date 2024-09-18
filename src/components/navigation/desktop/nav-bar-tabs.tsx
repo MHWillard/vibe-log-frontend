@@ -10,7 +10,7 @@ export const NavBarTabs: React.FC = () => {
       {isAuthenticated && (
         <>
           <NavBarTab path="/profile" label="Profile" />
-          <NavBarTab path="/user-feed" label="Your Feed" />
+          <NavBarTab path="/feed" label="Your Feed" />
           <NavBarTab path="/new-post" label="New Post" />
         </>
       )}
