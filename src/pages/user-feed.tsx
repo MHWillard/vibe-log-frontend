@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CodeSnippet } from "../components/code-snippet";
 import { PageLayout } from "../components/page-layout";
-import { getProtectedResource } from "../services/message.service";
+import { getPosts } from "../services/posts.service";
 
 export const UserFeed: React.FC = () => {
   const [message, setMessage] = useState<string>("");
@@ -10,7 +10,7 @@ export const UserFeed: React.FC = () => {
     let isMounted = true;
 
     const getMessage = async () => {
-      const { data, error } = await getProtectedResource();
+      const { data, error } = await getPosts();
 
       if (!isMounted) {
         return;
