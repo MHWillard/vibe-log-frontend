@@ -32,6 +32,10 @@ export const NewPost: React.FC = () => {
     };
   }, []);
 
+  //capture data from page form
+  //assign to json object
+  //spit that to backend to do work
+
   return (
     <PageLayout>
       <div className="content-layout">

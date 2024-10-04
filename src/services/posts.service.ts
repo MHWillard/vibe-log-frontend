@@ -6,7 +6,7 @@ const apiServerUrl = process.env.REACT_APP_API_SERVER_URL;
 
 export const getPosts = async (): Promise<ApiResponse> => {
   const config: AxiosRequestConfig = {
-    url: `${apiServerUrl}/posts`,
+    url: `${apiServerUrl}`,
     method: "GET",
     headers: {
       "content-type": "application/json",
