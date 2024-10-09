@@ -4,33 +4,18 @@ import { PageLayout } from "../components/page-layout";
 import { getProtectedResource } from "../services/message.service";
 
 export const NewPost: React.FC = () => {
-  const [message, setMessage] = useState<string>("");
+  const [postContent, setPostContent] = useState<string>("");
+  const [userid, setUserid] = useState<number>(0);
 
-  useEffect(() => {
-    let isMounted = true;
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const form = event.currentTarget
+    const formElements = form.elements as typeof form.elements & {
+      postInput: HTMLInputElement
+    }
+    setPostContent(formElements.postInput.value)
+  }
 
-    const getMessage = async () => {
-      const { data, error } = await getProtectedResource();
-
-      if (!isMounted) {
-        return;
-      }
-
-      if (data) {
-        setMessage(JSON.stringify(data, null, 2));
-      }
-
-      if (error) {
-        setMessage(JSON.stringify(error, null, 2));
-      }
-    };
-
-    getMessage();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
 
   //capture data from page form
   //assign to json object
@@ -52,7 +37,13 @@ export const NewPost: React.FC = () => {
               <strong>Only authenticated users can access this page.</strong>
             </span>
           </p>
-          <CodeSnippet title="Protected Message" code={message} />
+          <p id="post-form">
+            What's your vibe?
+            <form onSubmit={handleSubmit}>
+              <input id="postInput" />
+              <button type="submit">Submit</button>
+            </form>
+          </p>
         </div>
       </div>
     </PageLayout>

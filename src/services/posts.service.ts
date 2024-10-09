@@ -5,13 +5,19 @@ import { callExternalApi } from "./api.service";
 const apiServerUrl = process.env.REACT_APP_API_SERVER_URL;
 const apiPostUrl = process.env.REACT_APP_API_POST_URL;
 
-export const getPosts = async (): Promise<ApiResponse> => {
+interface FormData {
+  user_id: number;
+  content: string;
+}
+
+export const getPosts = async (form_data: FormData): Promise<ApiResponse> => {
   const config: AxiosRequestConfig = {
     url: `${apiServerUrl}`,
     method: "GET",
     headers: {
       "content-type": "application/json",
     },
+    data: form_data,
   };
 
   const { data, error } = (await callExternalApi({ config })) as ApiResponse;
