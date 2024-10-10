@@ -10,14 +10,13 @@ interface FormData {
   content: string;
 }
 
-export const getPosts = async (form_data: FormData): Promise<ApiResponse> => {
+export const getPosts = async (): Promise<ApiResponse> => {
   const config: AxiosRequestConfig = {
     url: `${apiServerUrl}`,
     method: "GET",
     headers: {
       "content-type": "application/json",
     },
-    data: form_data,
   };
 
   const { data, error } = (await callExternalApi({ config })) as ApiResponse;
@@ -28,13 +27,14 @@ export const getPosts = async (form_data: FormData): Promise<ApiResponse> => {
   };
 };
 
-export const createPost = async (): Promise<ApiResponse> => {
+export const createPost = async (form_data: FormData): Promise<ApiResponse> => {
   const config: AxiosRequestConfig = {
     url: `${apiPostUrl}`,
     method: "POST",
     headers: {
       "content-type": "application/json",
     },
+    data: form_data,
   };
 
   const { data, error } = (await callExternalApi({ config })) as ApiResponse;
