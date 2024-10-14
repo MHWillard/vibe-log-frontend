@@ -5,11 +5,6 @@ import { callExternalApi } from "./api.service";
 const apiServerUrl = process.env.REACT_APP_API_SERVER_URL;
 const apiPostUrl = process.env.REACT_APP_API_POST_URL;
 
-interface FormData {
-  user_id: number;
-  content: string;
-}
-
 export const getPosts = async (): Promise<ApiResponse> => {
   const config: AxiosRequestConfig = {
     url: `${apiServerUrl}`,
@@ -27,14 +22,14 @@ export const getPosts = async (): Promise<ApiResponse> => {
   };
 };
 
-export const createPost = async (form_data: FormData): Promise<ApiResponse> => {
+export const createPost = async (postContent: string): Promise<ApiResponse> => {
   const config: AxiosRequestConfig = {
     url: `${apiPostUrl}`,
     method: "POST",
     headers: {
       "content-type": "application/json",
     },
-    data: form_data,
+    data: postContent,
   };
 
   const { data, error } = (await callExternalApi({ config })) as ApiResponse;

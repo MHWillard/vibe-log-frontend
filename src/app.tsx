@@ -3,7 +3,6 @@ import React from "react";
 import { PageLoader } from "./components/page-loader";
 import { AuthenticationGuard } from "./components/authentication-guard";
 import { Route, Routes } from "react-router-dom";
-//import { CallbackPage } from "./pages/callback-page";
 import { HomePage } from "./pages/home-page";
 import { NotFoundPage } from "./pages/not-found-page";
 import { ProfilePage } from "./pages/profile-page";
