@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { CodeSnippet } from "../components/code-snippet";
 import { PageLayout } from "../components/page-layout";
-import { getProtectedResource } from "../services/message.service";
+import { createPost } from "../services/posts.service";
 
 
 export const NewPost: React.FC = () => {
   const [postContent, setPostContent] = useState<string>("");
-  const [userid, setUserid] = useState<number>(0);
+  //const [userid, setUserid] = useState<number>(0);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -14,21 +13,23 @@ export const NewPost: React.FC = () => {
     setPostContent(value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log('post content:', postContent);
+
+    const { data, error } = await createPost(postContent);
+
+    if (data) {
+      console.log(JSON.stringify(data, null, 2));
+    }
+
+    if (error) {
+      console.log(JSON.stringify(error, null, 2));
+    }
   };
 
 
   /*
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const form = event.currentTarget
-    const formElements = form.elements as typeof form.elements & {
-      postInput: HTMLInputElement
-    }
-    setPostContent(formElements.postInput.value)
-  }
 
   handleSubmit:
   -prevent default event
