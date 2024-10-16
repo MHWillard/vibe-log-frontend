@@ -1,11 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { PageLayout } from "../components/page-layout";
 import { createPost } from "../services/posts.service";
+import { getUserId } from "../services/users.service";
 
 
 export const NewPost: React.FC = () => {
+  //temporary user ID measure: better version will poll with login sessions
   const [postContent, setPostContent] = useState<string>("");
-  //const [userid, setUserid] = useState<number>(0);
+  const [userid, setUserid] = useState<string>("");
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const getMessage = async () => {
+      const { data, error } = await getUserId();
+
+      if (!isMounted) {
+        return;
+      }
+
+      if (data) {
+        setUserid(JSON.stringify(data, null, 2));
+      }
+
+      if (error) {
+        setUserid(JSON.stringify(error, null, 2));
+      }
+    };
+
+    getMessage();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
