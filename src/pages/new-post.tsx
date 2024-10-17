@@ -43,9 +43,12 @@ export const NewPost: React.FC = () => {
 
   const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('post content:', postContent);
+    const postData = {
+      content: postContent,
+      userId: userid,
+    }
 
-    const { data, error } = await createPost(postContent);
+    const { data, error } = await createPost(postData);
 
     if (data) {
       console.log(JSON.stringify(data, null, 2));
