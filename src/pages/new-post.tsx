@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { PageLayout } from "../components/page-layout";
 import { createPost } from "../services/posts.service";
 import { getUserId } from "../services/users.service";
@@ -8,6 +9,7 @@ export const NewPost: React.FC = () => {
   //temporary user ID measure: better version will poll with login sessions
   const [postContent, setPostContent] = useState<string>("");
   const [userid, setUserid] = useState<string>("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     let isMounted = true;
@@ -52,23 +54,13 @@ export const NewPost: React.FC = () => {
 
     if (data) {
       console.log(JSON.stringify(data, null, 2));
+      navigate("/feed");
     }
 
     if (error) {
       console.log(JSON.stringify(error, null, 2));
     }
   };
-
-
-  /*
-
-  handleSubmit:
-  -prevent default event
-  -get form data
-  -convert to object
-  -spit to backend through API handler
-
-  */
 
   return (
     <PageLayout>
