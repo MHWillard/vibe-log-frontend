@@ -27,13 +27,16 @@ export const UserFeed: React.FC = () => {
       if (data) {
         //setMessage(JSON.stringify(data, null, 2));
         //setPosts(data);
+        /*
         const postsData: Post[] = data.map((item: any) => ({
           post_id: item.id, // Adjust field names as necessary
           userid: item.userId,
           content: item.content,
         }));
+        */
     
-        setPosts(postsData);
+        //setPosts(postsData);
+        console.log(JSON.stringify(data, null, 2));
       }
 
       if (error) {
@@ -64,7 +67,7 @@ export const UserFeed: React.FC = () => {
           Your Feed
         </h1>
         <div className="content__body">
-          <CodeSnippet title="Protected Message" code={message} />
+          {/*<CodeSnippet title="Protected Message" code={message} />*/}
         </div>
       </div>
     </PageLayout>
