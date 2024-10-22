@@ -4,9 +4,11 @@ import { PageLayout } from "../components/page-layout";
 import { getPosts } from "../services/posts.service";
 
 interface Post {
-  post_id: number,
+  post_table_id: number,
   userid: number,
   content: string,
+  post_id: number,
+  post_date: Date,
   // Add other fields as necessary
 }
 
@@ -35,7 +37,7 @@ export const UserFeed: React.FC = () => {
         }));
         */
     
-        //setPosts(postsData);
+        //setPosts(data);
         console.log(JSON.stringify(data, null, 2));
       }
 
@@ -52,9 +54,9 @@ export const UserFeed: React.FC = () => {
   }, []);
 
   const renderPosts = () => {
-    return posts.map((post) => {
+    return posts.map(post => {
       <div key={post.post_id} className="post">
-        <em>10/18/24</em>
+        <em>{post.post_date.toDateString()}</em>
         <h3>{post.content}</h3>
       </div>
     });
@@ -68,6 +70,8 @@ export const UserFeed: React.FC = () => {
         </h1>
         <div className="content__body">
           {/*<CodeSnippet title="Protected Message" code={message} />*/}
+          {/*renderPosts*/}
+          test
         </div>
       </div>
     </PageLayout>
