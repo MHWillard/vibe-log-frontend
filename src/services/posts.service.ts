@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 import { ApiResponse } from "../models/api-response";
-import { callExternalApi } from "./api.service";
+import { callExternalApi, fetchPosts } from "./api.service";
 
 const apiServerUrl = process.env.REACT_APP_API_SERVER_URL;
 const apiPostUrl = process.env.REACT_APP_API_POST_URL;
@@ -10,7 +10,17 @@ interface postData {
   userId: string,
 }
 
-export const getPosts = async (): Promise<ApiResponse> => {
+export const getPosts = async () => {
+  const { data, error } = await fetchPosts()
+  console.log(data);
+
+  return {
+    data,
+    error,
+  };
+}
+
+export const getPostsOld = async (): Promise<ApiResponse> => {
   const config: AxiosRequestConfig = {
     url: `${apiServerUrl}`,
     method: "GET",
@@ -20,6 +30,7 @@ export const getPosts = async (): Promise<ApiResponse> => {
   };
 
   const { data, error } = (await callExternalApi({ config })) as ApiResponse;
+  console.log(data);
 
   return {
     data,

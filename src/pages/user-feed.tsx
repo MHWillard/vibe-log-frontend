@@ -9,7 +9,6 @@ interface Post {
   content: string,
   post_id: number,
   post_date: Date,
-  // Add other fields as necessary
 }
 
 export const UserFeed: React.FC = () => {
@@ -28,16 +27,19 @@ export const UserFeed: React.FC = () => {
 
       if (data) {
         //setMessage(JSON.stringify(data, null, 2));
-        //setPosts(data);
+        setPosts(data);
+        
         /*
         const postsData: Post[] = data.map((item: any) => ({
           post_id: item.id, // Adjust field names as necessary
           userid: item.userId,
           content: item.content,
         }));
+        
+        setPosts(data as Post[]);
+        //const postsArray: Post[] = data;
+        //setPosts(postsArray);
         */
-    
-        //setPosts(data);
         console.log(JSON.stringify(data, null, 2));
       }
 

@@ -2,6 +2,18 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { ApiResponse } from "../models/api-response";
 import { AppError } from "../models/app-error";
 
+const apiServerUrl = process.env.REACT_APP_API_SERVER_URL;
+
+export const fetchPosts = async () => {
+  try {
+    const response = await axios.get(`${apiServerUrl}`);
+    return response.data; // Access the data property
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    throw error;
+  }
+};
+
 export const callExternalApi = async (options: {
   config: AxiosRequestConfig;
 }): Promise<ApiResponse> => {
