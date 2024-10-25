@@ -7,7 +7,8 @@ const apiServerUrl = process.env.REACT_APP_API_SERVER_URL;
 export const fetchPosts = async () => {
   try {
     const response = await axios.get(`${apiServerUrl}`);
-    return response.data; // Access the data property
+    const {data} = response;
+    return data; // Access the data property
   } catch (error) {
     console.error('Error fetching posts:', error);
     throw error;
@@ -20,6 +21,7 @@ export const callExternalApi = async (options: {
   try {
     const response: AxiosResponse = await axios(options.config);
     const { data } = response;
+    console.log("ExternalAPIData:" + JSON.stringify(data));
 
     return {
       data,

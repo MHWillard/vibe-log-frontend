@@ -12,39 +12,40 @@ interface Post {
 }
 
 export const UserFeed: React.FC = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<any>([]);
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
     let isMounted = true;
 
     const fetchPosts = async () => {
-      const { data, error } = await getPosts();
+      try {
+        const { data, error } = await getPosts();
 
-      if (!isMounted) {
-        return;
-      }
+        if (!isMounted) {
+          return;
+        }
 
-      if (data) {
-        //setMessage(JSON.stringify(data, null, 2));
-        setPosts(data);
-        
-        /*
-        const postsData: Post[] = data.map((item: any) => ({
-          post_id: item.id, // Adjust field names as necessary
-          userid: item.userId,
-          content: item.content,
-        }));
-        
-        setPosts(data as Post[]);
-        //const postsArray: Post[] = data;
-        //setPosts(postsArray);
-        */
-        console.log(JSON.stringify(data, null, 2));
-      }
+        if (data && Array.isArray(data)) {
+          const postsData: Post[] = data.map((item: any) => ({
+            post_table_id: item.post_table_id,
+            userid: item.user_id,
+            content: item.content,
+            post_id: item.post_id,
+            post_date: new Date(item.post_date),
+          }));
 
-      if (error) {
-        setError(JSON.stringify(error, null, 2));
+          setPosts(postsData);
+        } else {
+          console.error("Unexpected data format:", data);
+        }
+
+        if (error) {
+          setError(JSON.stringify(error, null, 2));
+        }
+      } catch (err) {
+        console.error("Error fetching posts:", err);
+        setError("An error occurred while fetching posts.");
       }
     };
 
@@ -56,12 +57,12 @@ export const UserFeed: React.FC = () => {
   }, []);
 
   const renderPosts = () => {
-    return posts.map(post => {
+    return posts.map((post:Post) => (
       <div key={post.post_id} className="post">
         <em>{post.post_date.toDateString()}</em>
         <h3>{post.content}</h3>
       </div>
-    });
+    ));
   };
 
   return (
@@ -72,8 +73,7 @@ export const UserFeed: React.FC = () => {
         </h1>
         <div className="content__body">
           {/*<CodeSnippet title="Protected Message" code={message} />*/}
-          {/*renderPosts*/}
-          test
+          {renderPosts()}
         </div>
       </div>
     </PageLayout>
