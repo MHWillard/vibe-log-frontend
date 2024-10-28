@@ -3,10 +3,8 @@ import React from "react";
 export const MainSummary: React.FC = () => {
 
   return (
-    <div className="auth0-features">
-      <div className="auth0-features__grid">
-        <p>Summary</p>
-      </div>
+    <div className="main-summary-description">
+        <p>Get started today by logging in or signing up for an account.</p>
     </div>
   );
 };

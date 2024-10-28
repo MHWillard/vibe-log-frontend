@@ -112,3 +112,7 @@
     line-height: 2.4rem;
   }
 }
+
+span.span-disclaimer {
+  font-size: 0.5em;
+}

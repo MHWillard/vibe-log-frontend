@@ -158,3 +158,10 @@
     line-height: 2.2rem;
   }
 }
+
+div.main-summary-description {
+  margin: 0 auto;
+  max-width: 50em;
+  font-size: 20px;
+  color: #555;
+}
