@@ -34,7 +34,7 @@
 }
 
 .button--primary:hover {
-  background: rgba(99, 93, 255, 0.85);
+  background: rgba(21, 131, 204, 0.85);
 }
 
 .button--secondary {
@@ -71,9 +71,9 @@
 .button__logout {
   min-width: 8.4rem;
 
-  border: 0.1rem solid var(--indigo);
+  border: 0.1rem solid var(--white);
   color: var(--white);
-  background: var(--indigo);
+  background: rgba(21, 131, 204, 0.85);
   width: 50%;
   font-size: 1.6rem;
 

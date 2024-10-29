@@ -130,7 +130,7 @@
   }
   
   button:hover {
-    background-color: #e07b39; /* Slightly darker orange for hover effect */
+    background-color: rgba(20, 96, 146, 0.85);
   }
   
   a {
