@@ -14,7 +14,7 @@
 }
 
 .profile__avatar {
-  border: solid 2px var(--aqua);
+  border: solid 2px var(--black);
   border-radius: 50%;
 
   /* responsive */
@@ -32,8 +32,6 @@
 .profile__title {
   margin-top: 0;
   margin-bottom: 0;
-
-  color: var(--white);
 }
 
 .profile__details {
@@ -67,4 +65,19 @@
   .profile__details {
     margin-top: 1.6rem;
   }
+}
+
+div.content-layout {
+  margin: 0 auto;
+  max-width: 50em;
+  font-size: 20px;
+  color: #555;
+}
+
+h1,h2,h3 {
+  color: #555;
+}
+
+.post-submit-button {
+  margin:10px 0 10px 0;
 }

@@ -30,7 +30,7 @@ export const NewPost: React.FC = () => {
       }
     };
 
-    getMessage();
+    //getMessage();
 
     return () => {
       isMounted = false;
@@ -66,19 +66,18 @@ export const NewPost: React.FC = () => {
     <PageLayout>
       <div className="content-layout">
         <h1 id="page-title" className="content__title">
-          Protected Page
+        New Post
         </h1>
         <div className="content__body">
           <p id="page-description">
             <span>
-              <strong>New Post</strong>
+              <strong>What's your vibe? (Posting feature currently a work in progress.)</strong>
             </span>
           </p>
           <p id="post-form">
-            What's your vibe?
             <form onSubmit={handleSubmit}>
-              <input id="postInput" type="text" name="content" value={postContent} onChange={handleChange}/>
-              <button type="submit">Submit</button>
+              <input id="postInput" type="text" name="content" value={postContent} onChange={handleChange}/><br/>
+              <button type="submit" className="post-submit-button">Submit</button>
             </form>
           </p>
         </div>

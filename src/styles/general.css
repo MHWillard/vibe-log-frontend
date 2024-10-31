@@ -121,7 +121,7 @@
   }
   
   button {
-    background-color: #ff8c42; /* A cool orange color */
+    background-color: rgba(21, 131, 204, 0.85);
     color: white; /* Ensure text is readable */
     border: none;
     padding: 10px 20px;
