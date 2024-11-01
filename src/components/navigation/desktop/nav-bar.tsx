@@ -1,5 +1,5 @@
 import React from "react";
-import { NavBarBrand } from "./nav-bar-brand";
+//import { NavBarBrand } from "./nav-bar-brand";
 import { NavBarButtons } from "./nav-bar-buttons";
 import { NavBarTabs } from "./nav-bar-tabs";
 

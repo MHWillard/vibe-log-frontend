@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageLayout } from "../components/page-layout";
 import { createPost } from "../services/posts.service";
-import { getUserId } from "../services/users.service";
+//import { getUserId } from "../services/users.service";
 
 
 export const NewPost: React.FC = () => {
   //temporary user ID measure: better version will poll with login sessions
   const [postContent, setPostContent] = useState<string>("");
-  const [userid, setUserid] = useState<string>("");
+  //const [userid, setUserid] = useState<string>("");
   const navigate = useNavigate();
 
+  /*
   useEffect(() => {
     let isMounted = true;
 
+    
     const getMessage = async () => {
       const { data, error } = await getUserId();
 
@@ -29,13 +31,14 @@ export const NewPost: React.FC = () => {
         setUserid(JSON.stringify(error, null, 2));
       }
     };
+    
 
     //getMessage();
 
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, []);*/
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -47,7 +50,7 @@ export const NewPost: React.FC = () => {
     event.preventDefault();
     const postData = {
       content: postContent,
-      userId: userid,
+      userId: "userid-temp",
     }
 
     const { data, error } = await createPost(postData);
