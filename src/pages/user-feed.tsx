@@ -15,7 +15,6 @@ interface Post {
 export const UserFeed: React.FC = () => {
   const [posts, setPosts] = useState<any>([]);
   // eslint-disable-next-line no-unused-vars
-  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     let isMounted = true;
@@ -57,14 +56,8 @@ export const UserFeed: React.FC = () => {
         } else {
           console.error("Unexpected data format:", data);
         }
-
-        if (error) {
-          var errorMsg = JSON.stringify(error, null, 2)
-          setError(errorMsg);
-        }
       } catch (err) {
         console.error("Error fetching posts:", err);
-        setError("An error occurred while fetching posts.");
       }
     };
 
