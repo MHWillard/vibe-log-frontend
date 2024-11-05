@@ -38,6 +38,7 @@ export const UserFeed: React.FC = () => {
     const fetchPosts = async () => {
       try {
         const { data, error } = await getPostsTest();
+        console.log(error)
 
         if (!isMounted) {
           return;
