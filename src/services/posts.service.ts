@@ -10,7 +10,7 @@ interface postData {
   userId: string,
 }
 
-export const getPostsOld = async () => {
+export const getPostsTest = async () => {
   const { data, error } = await fetchPosts()
   console.log(data);
 
