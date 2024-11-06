@@ -54,8 +54,10 @@ export const UserFeed: React.FC = () => {
           }));
 
           setPosts(postsData);
+          console.log("console:" + JSON.stringify(data));
         } else {
           console.error("Unexpected data format:", data);
+          console.log("console:" + JSON.stringify(data));
         }
       } catch (err) {
         console.error("Error fetching posts:", err);
