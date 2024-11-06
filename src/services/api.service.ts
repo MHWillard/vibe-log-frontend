@@ -3,7 +3,7 @@ import { ApiResponse } from "../models/api-response";
 import { AppError } from "../models/app-error";
 
 //const apiServerUrl = process.env.REACT_APP_API_SERVER_URL; 
-const apiServerUrl = 'https://vibe-log-backend-production.up.railway.app/test-posts'
+const apiServerUrl = 'https://vibe-log-backend-production.up.railway.app/test-post'
 
 export const fetchPosts = async () => {
   try {
