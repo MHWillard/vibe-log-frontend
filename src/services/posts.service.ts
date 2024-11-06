@@ -12,7 +12,7 @@ interface postData {
 
 export const getPostsTest = async () => {
   const { data, error } = await fetchPosts()
-  console.log(data);
+  console.log("console:" + JSON.stringify(data));
 
   return {
     data,
@@ -30,7 +30,6 @@ export const getPosts = async (): Promise<ApiResponse> => {
   };
 
   const { data, error } = (await callExternalApi({ config })) as ApiResponse;
-  console.log("console:" + JSON.stringify(data));
 
   return {
     data,

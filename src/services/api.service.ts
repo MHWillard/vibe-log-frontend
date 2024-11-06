@@ -7,9 +7,14 @@ const apiServerUrl = 'https://vibe-log-backend-production.up.railway.app/test-po
 
 export const fetchPosts = async () => {
   try {
-    const response = await axios.get(`${apiServerUrl}`);
-    const {data} = response;
-    return data; // Access the data property
+    await axios.get(`${apiServerUrl}`)
+    .then((response) => {
+      console.log("GET Response")
+      console.log(response.data);
+      const {data} = response.data;
+
+      return data; // Access the data property
+    })
   } catch (error) {
     console.error('Error fetching posts:', error);
     throw error;
