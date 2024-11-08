@@ -3,12 +3,12 @@ import { ApiResponse } from "../models/api-response";
 import { AppError } from "../models/app-error";
 
 //const apiServerUrl = process.env.REACT_APP_API_SERVER_URL; 
-const apiServerUrl = 'https://vibe-log-backend-production.up.railway.app/test-post'
-
+const apiServerUrl = process.env.REACT_APP_API_TEST_URL; 
+//const apiServerUrl = process.env.RAILWAY_API_URL; 
 export const fetchPosts = async () => {
   try {
     const response = await axios.get(`${apiServerUrl}`)
-    const {data} = response;
+    const {data} = await response;
     return data; // Access the data property
   } catch (error) {
     console.error('Error fetching posts:', error);
