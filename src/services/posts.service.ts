@@ -12,7 +12,6 @@ interface postData {
 
 export const getPostsTest = async () => {
   const { data, error } = await fetchPosts()
-  console.log("console:" + JSON.stringify(data));
 
   return {
     data,

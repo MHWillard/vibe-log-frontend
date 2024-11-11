@@ -37,7 +37,8 @@ export const UserFeed: React.FC = () => {
     
     const fetchPosts = async () => {
       try {
-        const { data, error } = await getPostsTest();
+        const { data:any, error } = await getPostsTest()
+        .then(data, error => )
         console.log(error)
 
         if (!isMounted) {
@@ -45,6 +46,9 @@ export const UserFeed: React.FC = () => {
         }
 
         if (data && Array.isArray(data)) {
+          console.log(data)
+          console.log(JSON.stringify(data))
+
           const postsData: Post[] = data.map((item: any) => ({
             post_table_id: item.post_table_id,
             userid: item.user_id,
@@ -54,9 +58,9 @@ export const UserFeed: React.FC = () => {
           }));
 
           setPosts(postsData);
-          console.log("console:" + JSON.stringify(data));
+          console.log("console:" + JSON.stringify(postsData));
         } else {
-          console.error("Unexpected data format:", data);
+          console.error("Unexpected data format:", JSON.stringify(data));
           console.log("console:" + JSON.stringify(data));
         }
       } catch (err) {
