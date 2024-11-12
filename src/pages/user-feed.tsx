@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-//import { CodeSnippet } from "../components/code-snippet";
 import { PageLayout } from "../components/page-layout";
 //import { getPosts } from "../services/posts.service";
 import { getPostsTest } from "../services/posts.service";
@@ -13,8 +12,7 @@ interface Post {
 }
 
 export const UserFeed: React.FC = () => {
-  const [posts, setPosts] = useState<any>([]);
-  // eslint-disable-next-line no-unused-vars
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     let isMounted = true;
@@ -22,53 +20,34 @@ export const UserFeed: React.FC = () => {
       console.log("mount")
     }
 
-    /*
-    var data = [{"post_table_id":18,"user_id":1234,"content":"happy","post_id":5678,"post_date":"2024-10-20T14:00:00Z"},{"post_table_id":19,"user_id":1234,"content":"sad","post_id":6789,"post_date":"2024-10-20T18:30:00Z"},{"post_table_id":20,"user_id":1234,"content":"excited","post_id":7890,"post_date":"2024-10-20T22:45:00Z"},{"post_table_id":21,"user_id":1234,"content":"angry","post_id":8901,"post_date":"2024-10-21T13:15:00Z"},{"post_table_id":22,"user_id":1234,"content":"calm","post_id":9012,"post_date":"2024-10-21T20:00:00Z"}]
-
-    const postsData: Post[] = data.map((item: any) => ({
-      post_table_id: item.post_table_id,
-      userid: item.user_id,
-      content: item.content,
-      post_id: item.post_id,
-      post_date: new Date(item.post_date),
-    }));
-    */
-
-    
-    const fetchPosts = async () => {
+    const gatherPosts = async () => {
       try {
-        const { data:any, error } = await getPostsTest()
-        .then(data, error => )
+        const { data, error } = await getPostsTest()
+        console.log("Fetched data:", data);
         console.log(error)
 
         if (!isMounted) {
           return;
         }
 
-        if (data && Array.isArray(data)) {
-          console.log(data)
-          console.log(JSON.stringify(data))
-
+        if (Array.isArray(data)) {
           const postsData: Post[] = data.map((item: any) => ({
+            content: item.content,
+            post_date: new Date(item.post_date),
+            post_id: item.post_id,
             post_table_id: item.post_table_id,
             userid: item.user_id,
-            content: item.content,
-            post_id: item.post_id,
-            post_date: new Date(item.post_date),
           }));
 
           setPosts(postsData);
-          console.log("console:" + JSON.stringify(postsData));
-        } else {
-          console.error("Unexpected data format:", JSON.stringify(data));
-          console.log("console:" + JSON.stringify(data));
-        }
-      } catch (err) {
+          console.log("Posts set to state:", postsData);
+      } 
+    } catch (err) {
         console.error("Error fetching posts:", err);
       }
     };
 
-    fetchPosts();
+    gatherPosts();
     //setPosts(postsData);
     //setError(error)
 

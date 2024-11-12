@@ -8,13 +8,10 @@ const apiServerUrl = process.env.REACT_APP_API_TEST_URL;
 export const fetchPosts = async () => {
   try {
     const response = await axios.get(`${apiServerUrl}`)
-    console.log("response:" + response);
-    const {data} = await response;
-    console.log("data:" + JSON.stringify(data))
-    return data; // Access the data property
+    return { data: response.data, error: null };
   } catch (error) {
-    console.error('Error fetching posts:', error);
-    throw error;
+    console.error("Error fetching posts:", error);
+    return { data: null, error };
   }
 };
 
