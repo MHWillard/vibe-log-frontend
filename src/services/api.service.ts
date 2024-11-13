@@ -2,8 +2,8 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { ApiResponse } from "../models/api-response";
 import { AppError } from "../models/app-error";
 
-//const apiServerUrl = process.env.REACT_APP_API_SERVER_URL; 
-const apiServerUrl = process.env.REACT_APP_API_TEST_URL; 
+const apiServerUrl = process.env.REACT_APP_API_SERVER_URL; 
+//const apiServerUrl = process.env.REACT_APP_API_TEST_URL; 
 //const apiServerUrl = process.env.RAILWAY_API_URL; 
 export const fetchPosts = async () => {
   try {
