@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PageLayout } from "../components/page-layout";
 //import { getPosts } from "../services/posts.service";
-import { getPostsTest } from "../services/posts.service";
+import { getPosts } from "../services/posts.service";
 
 interface Post {
   post_table_id: number,
@@ -22,7 +22,7 @@ export const UserFeed: React.FC = () => {
 
     const gatherPosts = async () => {
       try {
-        const { data, error } = await getPostsTest()
+        const { data, error } = await getPosts()
         console.log("Fetched data:", data);
         console.log(error)
 

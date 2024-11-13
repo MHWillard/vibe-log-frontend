@@ -10,7 +10,7 @@ interface postData {
   userId: string,
 }
 
-export const getPostsTest = async () => {
+export const getPosts = async () => {
   const { data, error } = await fetchPosts()
 
   return {
@@ -18,23 +18,6 @@ export const getPostsTest = async () => {
     error,
   };
 }
-
-export const getPosts = async (): Promise<ApiResponse> => {
-  const config: AxiosRequestConfig = {
-    url: `${apiServerUrl}`,
-    method: "GET",
-    headers: {
-      "content-type": "application/json",
-    },
-  };
-
-  const { data, error } = (await callExternalApi({ config })) as ApiResponse;
-
-  return {
-    data,
-    error,
-  };
-};
 
 export const createPost = async (postData: postData): Promise<ApiResponse> => {
   const config: AxiosRequestConfig = {
