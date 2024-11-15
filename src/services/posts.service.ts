@@ -4,6 +4,7 @@ import { callExternalApi, fetchPosts } from "./api.service";
 
 const apiServerUrl = process.env.REACT_APP_API_SERVER_URL;
 const apiPostUrl = process.env.REACT_APP_API_POST_URL;
+//redo
 
 interface postData {
   content: string,
