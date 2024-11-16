@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageLayout } from "../components/page-layout";
 import { createPost } from "../services/posts.service";
+import data from '@emoji-mart/data'
+import Picker from '@emoji-mart/react'
 //import { getUserId } from "../services/users.service";
 
 
@@ -83,6 +85,9 @@ export const NewPost: React.FC = () => {
               <button type="submit" className="post-submit-button">Submit</button>
             </form>
           </p>
+          <div>
+          <Picker data={data} onEmojiSelect={console.log} />
+          </div>
         </div>
       </div>
     </PageLayout>
