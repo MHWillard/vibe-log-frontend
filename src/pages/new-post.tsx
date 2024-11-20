@@ -14,7 +14,7 @@ export const NewPost: React.FC = () => {
   const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const postData = {
-      vibe: currentMood,
+      content: currentMood,
       userId: "userid-temp",
     }
 

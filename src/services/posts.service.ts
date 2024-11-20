@@ -7,7 +7,7 @@ const apiPostUrl = process.env.REACT_APP_API_POST_URL;
 //redo
 
 interface postData {
-  vibe: string,
+  content: string,
   userId: string,
 }
 
