@@ -39,27 +39,26 @@ export const NewPost: React.FC = () => {
   return (
     <PageLayout>
       <div className="content-layout">
+        <div id="new-post-body">
         <h1 id="page-title" className="content__title">
-        New Post
+        What's your vibe?
         </h1>
         <div className="content__body">
           <p id="page-description">
-            <span>
-              <strong>What's your vibe? (Posting feature currently a work in progress.)</strong>
-            </span>
           </p>
           <div className="selected-mood">
             {currentMood}
           </div>
+          <div>
+          <Picker id="emoji-picker" data={data} onEmojiSelect={handleClick} />
           <p id="post-form">
             <form onSubmit={handleSubmit}>
               <button type="submit" className="post-submit-button">Submit</button>
             </form>
           </p>
-          <div>
-          <Picker data={data} onEmojiSelect={handleClick} />
           </div>
         </div>
+      </div>
       </div>
     </PageLayout>
   );
