@@ -32,8 +32,8 @@
 
 div.selected-mood {
   font-size: 400%;
-  padding-top: 30px;
-  padding-bottom: 60px;
+  padding-top: 10px;
+  padding-bottom: 45px;
 }
 
 #page-description {
@@ -50,11 +50,11 @@ div.selected-mood {
 }
 
 #emoji-picker {
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 #post-form {
-  padding-top: 30px;
+  padding-top: 20px;
 }
 
 @media only screen and (max-width: 480px) {
