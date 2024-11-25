@@ -50,8 +50,6 @@ export const UserFeed: React.FC = () => {
     };
 
     gatherPosts();
-    //setPosts(postsData);
-    //setError(error)
 
     return () => {
       isMounted = false;
@@ -67,7 +65,7 @@ export const UserFeed: React.FC = () => {
   }
 
   const renderPosts = () => {
-    return posts.map((post:Post) => (
+    return currentPosts.map((post:Post) => (
       <div key={post.post_id} className="feed-post">
         <em className='feed-post-date'>{post.post_date.toDateString()}</em>
         <p className='feed-post-content'>{post.content}</p>
