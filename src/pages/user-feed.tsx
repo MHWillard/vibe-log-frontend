@@ -13,6 +13,8 @@ interface Post {
 
 export const UserFeed: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
 
   useEffect(() => {
     let isMounted = true;
@@ -54,7 +56,15 @@ export const UserFeed: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [currentPage]);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  }
 
   const renderPosts = () => {
     return posts.map((post:Post) => (
@@ -76,6 +86,17 @@ export const UserFeed: React.FC = () => {
           {renderPosts()}
           </div>
         </div>
+        <div className="pagination">
+        {[...Array(Math.ceil(posts.length / postsPerPage))].map((_, i) => (
+          <button 
+            key={i + 1}
+            onClick={() => paginate(i + 1)}
+            className={currentPage === i + 1 ? 'active' : ''}
+          >
+            {i + 1}
+          </button>
+        ))}
+      </div>
       </div>
     </PageLayout>
   );
