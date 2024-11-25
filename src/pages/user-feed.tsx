@@ -58,9 +58,9 @@ export const UserFeed: React.FC = () => {
 
   const renderPosts = () => {
     return posts.map((post:Post) => (
-      <div key={post.post_id} className="post">
-        <h3>{post.content}</h3>
-        <em>{post.post_date.toDateString()}</em>
+      <div key={post.post_id} className="feed-post">
+        <em className='feed-post-date'>{post.post_date.toDateString()}</em>
+        <p className='feed-post-content'>{post.content}</p>
       </div>
     ));
   };
@@ -72,8 +72,9 @@ export const UserFeed: React.FC = () => {
           Your Feed
         </h1>
         <div className="content__body">
-          {/*<CodeSnippet title="Protected Message" code={message} />*/}
+          <div className="post-feed">
           {renderPosts()}
+          </div>
         </div>
       </div>
     </PageLayout>

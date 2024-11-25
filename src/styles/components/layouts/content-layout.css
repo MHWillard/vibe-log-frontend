@@ -57,6 +57,34 @@ div.selected-mood {
   padding-top: 20px;
 }
 
+.post-feed {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.feed-post {
+  background-color: #ffffff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.feed-post-date {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.feed-post-content {
+  font-size: 30px;
+  text-align: center;
+}
+
+
 @media only screen and (max-width: 480px) {
   .content-layout {
     padding: 1.6rem;
