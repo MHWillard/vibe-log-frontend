@@ -81,6 +81,8 @@ export const UserFeed: React.FC = () => {
     console.log(
       `User requested page number ${e.selected}, which is offset ${newOffset}`
     );
+    console.log("current posts:" + currentPosts)
+    console.log("pageCount: " + pageCount)
     setItemOffset(newOffset);
   }
 
