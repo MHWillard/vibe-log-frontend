@@ -26,7 +26,7 @@ export const UserFeed: React.FC = () => {
     const gatherPosts = async () => {
       try {
         const { data, error } = await getPosts()
-        console.log("Fetched data:", data);
+        //console.log("Fetched data:", data);
         console.log(error)
 
         if (!isMounted) {
@@ -43,7 +43,7 @@ export const UserFeed: React.FC = () => {
           }));
 
           setPosts(postsData);
-          console.log("Posts set to state:", postsData);
+          //console.log("Posts set to state:", postsData);
           setTotalPages(Math.ceil(postsData.length / postsPerPage));
       } 
     } catch (err) {
@@ -64,6 +64,10 @@ export const UserFeed: React.FC = () => {
 
   const paginate = (selectedPage: any) => {
     setCurrentPage(selectedPage.selected);
+    console.log("startIndex: " + startIndex)
+    console.log("endIndex: " + endIndex)
+    console.log("currentPosts: " + currentPosts)
+    console.log("currentPage: " + currentPage)
   }
 
   const renderPosts = () => {
