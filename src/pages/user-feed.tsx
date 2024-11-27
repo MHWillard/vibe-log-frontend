@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PageLayout } from "../components/page-layout";
 //import { getPosts } from "../services/posts.service";
 import { getPosts } from "../services/posts.service";
+//test
 
 interface Post {
   post_table_id: number,
