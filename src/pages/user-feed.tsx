@@ -56,7 +56,7 @@ export const UserFeed: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [postsPerPage]);
+  }, [currentPage, postsPerPage]);
 
   const startIndex = currentPage * postsPerPage;
   const endIndex = startIndex + postsPerPage;
