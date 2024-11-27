@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PageLayout } from "../components/page-layout";
-//import { getPosts } from "../services/posts.service";
 import { getPosts } from "../services/posts.service";
-//test
+import ReactPaginate from 'react-paginate';
 
 interface Post {
   post_table_id: number,
@@ -14,7 +13,8 @@ interface Post {
 
 export const UserFeed: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [postsPerPage] = useState(10);
 
   useEffect(() => {
@@ -44,6 +44,7 @@ export const UserFeed: React.FC = () => {
 
           setPosts(postsData);
           console.log("Posts set to state:", postsData);
+          setTotalPages(Math.ceil(postsData.length / postsPerPage));
       } 
     } catch (err) {
         console.error("Error fetching posts:", err);
@@ -55,14 +56,14 @@ export const UserFeed: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [currentPage]);
+  }, []);
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const startIndex = currentPage * postsPerPage;
+  const endIndex = startIndex + postsPerPage;
+  const currentPosts = posts.slice(startIndex, endIndex);
 
-  const paginate = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
+  const paginate = (selectedPage: any) => {
+    setCurrentPage(selectedPage.selected);
   }
 
   const renderPosts = () => {
@@ -86,15 +87,11 @@ export const UserFeed: React.FC = () => {
           </div>
         </div>
         <div className="pagination">
-        {[...Array(Math.ceil(posts.length / postsPerPage))].map((_, i) => (
-          <button 
-            key={i + 1}
-            onClick={() => paginate(i + 1)}
-            className={currentPage === i + 1 ? 'active' : ''}
-          >
-            {i + 1}
-          </button>
-        ))}
+        <ReactPaginate
+        pageCount={totalPages}
+        onPageChange={paginate}
+        forcePage={currentPage}
+    />
       </div>
       </div>
     </PageLayout>
