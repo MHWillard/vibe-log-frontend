@@ -13,8 +13,9 @@ interface Post {
 
 export const UserFeed: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
+  //const [currentPage, setCurrentPage] = useState(0);
+  //const [totalPages, setTotalPages] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
   const [postsPerPage] = useState(10);
 
   useEffect(() => {
@@ -44,7 +45,7 @@ export const UserFeed: React.FC = () => {
 
           setPosts(postsData);
           //console.log("Posts set to state:", postsData);
-          setTotalPages(Math.ceil(postsData.length / postsPerPage));
+          //setTotalPages(Math.ceil(postsData.length / postsPerPage));
       } 
     } catch (err) {
         console.error("Error fetching posts:", err);
@@ -56,18 +57,31 @@ export const UserFeed: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [currentPage, postsPerPage]);
+  }, []);
 
+  /*
   const startIndex = currentPage * postsPerPage;
   const endIndex = startIndex + postsPerPage;
   const currentPosts = posts.slice(startIndex, endIndex);
+  */
+  const endOffset = itemOffset + postsPerPage;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  const currentPosts = posts.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(posts.length / postsPerPage);
 
-  const paginate = (selectedPage: any) => {
+  const paginate = (e:any) => {
+    /*
     setCurrentPage(selectedPage.selected);
     console.log("startIndex: " + startIndex)
     console.log("endIndex: " + endIndex)
     console.log("currentPosts: " + currentPosts)
     console.log("currentPage: " + currentPage)
+    */
+    const newOffset = (e.selected * postsPerPage) % posts.length;
+    console.log(
+      `User requested page number ${e.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
   }
 
   const renderPosts = () => {
@@ -92,10 +106,14 @@ export const UserFeed: React.FC = () => {
         </div>
         <div className="pagination">
         <ReactPaginate
-        pageCount={totalPages}
+        breakLabel="..."
+        nextLabel="next >"
         onPageChange={paginate}
-        forcePage={currentPage}
-    />
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
       </div>
       </div>
     </PageLayout>
