@@ -58,15 +58,22 @@ export const UserFeed: React.FC = () => {
   }, []);
 
   const totalPages = Math.ceil(posts.length / postsPerPage);
+  console.log(totalPages);
 
   var indexOfLastItem = currentPage * postsPerPage;
   var indexOfFirstItem = indexOfLastItem - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstItem, indexOfLastItem);
+  console.log("first: "+ indexOfFirstItem);
+  console.log("last: " + indexOfLastItem);
+  console.log("currentPosts: " + currentPosts);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
     indexOfLastItem = currentPage * postsPerPage;
     indexOfFirstItem = indexOfLastItem - postsPerPage;
+    console.log("first: "+ indexOfFirstItem);
+    console.log("last: " + indexOfLastItem);
+    console.log("currentPosts: " + currentPosts);
   };
 
 
