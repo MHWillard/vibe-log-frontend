@@ -62,7 +62,7 @@ export const UserFeed: React.FC = () => {
 
   var indexOfLastItem = currentPage * postsPerPage;
   var indexOfFirstItem = indexOfLastItem - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstItem, indexOfLastItem);
+  var currentPosts = posts.slice(indexOfFirstItem, indexOfLastItem);
   console.log("first: "+ indexOfFirstItem);
   console.log("last: " + indexOfLastItem);
   console.log("currentPosts: " + currentPosts);
@@ -71,9 +71,11 @@ export const UserFeed: React.FC = () => {
     setCurrentPage(pageNumber);
     indexOfLastItem = currentPage * postsPerPage;
     indexOfFirstItem = indexOfLastItem - postsPerPage;
+    currentPosts = posts.slice(indexOfFirstItem, indexOfLastItem);
     console.log("first: "+ indexOfFirstItem);
     console.log("last: " + indexOfLastItem);
     console.log("currentPosts: " + currentPosts);
+    //probably need to update currentPost slice too
   };
 
 
