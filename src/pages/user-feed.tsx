@@ -13,10 +13,8 @@ interface Post {
 
 export const UserFeed: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
-  //const [currentPage, setCurrentPage] = useState(0);
-  //const [totalPages, setTotalPages] = useState(0);
-  //const [itemOffset, setItemOffset] = useState(0);
-  //const [postsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
 
   useEffect(() => {
     let isMounted = true;
@@ -59,55 +57,28 @@ export const UserFeed: React.FC = () => {
     };
   }, []);
 
-  /*
-  const startIndex = currentPage * postsPerPage;
-  const endIndex = startIndex + postsPerPage;
-  const currentPosts = posts.slice(startIndex, endIndex);
-  */
-  //const endOffset = itemOffset + postsPerPage;
-  //console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  //const currentPosts = posts.slice(itemOffset, endOffset);
-  //const pageCount = Math.ceil(posts.length / postsPerPage);
+  const totalPages = Math.ceil(posts.length / postsPerPage);
+
+  var indexOfLastItem = currentPage * postsPerPage;
+  var indexOfFirstItem = indexOfLastItem - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    indexOfLastItem = currentPage * postsPerPage;
+    indexOfFirstItem = indexOfLastItem - postsPerPage;
+  };
 
 
 
   const renderPosts = () => {
-    return posts.map((post:Post) => (
+    return currentPosts.map((post:Post) => (
       <div key={post.post_id} className="feed-post">
         <em className='feed-post-date'>{post.post_date.toDateString()}</em>
         <p className='feed-post-content'>{post.content}</p>
       </div>
     ));
   };
-
-/*
-  const paginate = (e:any) => {
-    
-    setCurrentPage(selectedPage.selected);
-    console.log("startIndex: " + startIndex)
-    console.log("endIndex: " + endIndex)
-    console.log("currentPosts: " + currentPosts)
-    console.log("currentPage: " + currentPage)
-    
-    const newOffset = (e.selected * postsPerPage) % posts.length;
-    console.log(
-      `User requested page number ${e.selected}, which is offset ${newOffset}`
-    );
-    console.log("current posts:" + currentPosts)
-    console.log("pageCount: " + pageCount)
-    setItemOffset(newOffset);
-  }
-
-        <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={paginate}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      />
-*/
 
   return (
     <PageLayout>
@@ -121,6 +92,11 @@ export const UserFeed: React.FC = () => {
           </div>
         </div>
         <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button key={index} onClick={() => handlePageChange(index + 1)}>
+            {index + 1}
+          </button>
+        ))}
       </div>
       </div>
     </PageLayout>
