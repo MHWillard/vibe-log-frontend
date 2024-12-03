@@ -59,28 +59,20 @@ export const UserFeed: React.FC = () => {
 
   const totalPages = Math.ceil(posts.length / postsPerPage);
   console.log(totalPages);
-
-  var indexOfLastItem = currentPage * postsPerPage;
-  var indexOfFirstItem = indexOfLastItem - postsPerPage;
-  var currentPosts = posts.slice(indexOfFirstItem, indexOfLastItem);
-  console.log("first: "+ indexOfFirstItem);
-  console.log("last: " + indexOfLastItem);
-  console.log("currentPosts: " + currentPosts);
-
+  
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-    indexOfLastItem = currentPage * postsPerPage;
-    indexOfFirstItem = indexOfLastItem - postsPerPage;
-    currentPosts = posts.slice(indexOfFirstItem, indexOfLastItem);
-    console.log("first: "+ indexOfFirstItem);
-    console.log("last: " + indexOfLastItem);
-    console.log("currentPosts: " + currentPosts);
     //probably need to update currentPost slice too
   };
 
-
-
   const renderPosts = () => {
+    const indexOfLastItem = currentPage * postsPerPage;
+    const indexOfFirstItem = indexOfLastItem - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstItem, indexOfLastItem);
+    console.log("first: "+ indexOfFirstItem);
+    console.log("last: " + indexOfLastItem);
+    console.log("currentPosts: " + currentPosts);
+
     return currentPosts.map((post:Post) => (
       <div key={post.post_id} className="feed-post">
         <em className='feed-post-date'>{post.post_date.toDateString()}</em>
