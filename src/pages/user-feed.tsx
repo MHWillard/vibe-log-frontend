@@ -69,6 +69,9 @@ export const UserFeed: React.FC = () => {
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
+    const indexOfLastItem = currentPage * postsPerPage;
+    const indexOfFirstItem = indexOfLastItem - postsPerPage;
+    setCurrentPosts(posts.slice(indexOfFirstItem, indexOfLastItem));
     //probably need to update currentPost slice too
   };
 
