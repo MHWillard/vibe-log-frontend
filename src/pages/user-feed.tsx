@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { PageLayout } from "../components/page-layout";
+import Pagination from "../components/pagination";
 import { getPosts } from "../services/posts.service";
 //import ReactPaginate from 'react-paginate';
 
@@ -15,7 +16,7 @@ export const UserFeed: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
-  const [currentPosts, setCurrentPosts] = useState<Post[]>([]);
+  //const [currentPosts, setCurrentPosts] = useState<Post[]>([]);
 
 
   useEffect(() => {
@@ -59,14 +60,12 @@ export const UserFeed: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const indexOfLastItem = currentPage * postsPerPage;
-    const indexOfFirstItem = indexOfLastItem - postsPerPage;
-    setCurrentPosts(posts.slice(indexOfFirstItem, indexOfLastItem));
-  }, [currentPage, posts, postsPerPage]);
+  const indexOfLastRecord = currentPage * postsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstRecord, indexOfLastRecord);
+  const nPages = Math.ceil(posts.length / postsPerPage)
 
-  const totalPages = Math.ceil(posts.length / postsPerPage);
-
+  /*
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
     const indexOfLastItem = currentPage * postsPerPage;
@@ -74,6 +73,7 @@ export const UserFeed: React.FC = () => {
     setCurrentPosts(posts.slice(indexOfFirstItem, indexOfLastItem));
     //probably need to update currentPost slice too
   };
+  */
 
   const renderPosts = () => {
     return currentPosts.map((post:Post) => (
@@ -96,11 +96,11 @@ export const UserFeed: React.FC = () => {
           </div>
         </div>
         <div className="pagination">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button key={index} onClick={() => handlePageChange(index + 1)}>
-            {index + 1}
-          </button>
-        ))}
+        <Pagination
+                nPages={nPages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+            />
       </div>
       </div>
     </PageLayout>
