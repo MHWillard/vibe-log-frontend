@@ -94,7 +94,7 @@ export const UserFeed: React.FC = () => {
         </h1>
         <div className="content__body">
           <div className="post-feed">
-          <PostFeed posts={currentPosts}/>
+          <PostFeed key={currentPage} posts={currentPosts}/>
           </div>
         </div>
         <div className="pagination">
