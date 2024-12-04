@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PageLayout } from "../components/page-layout";
 import Pagination from "../components/pagination";
+import PostFeed from "../components/postfeed";
 import { getPosts } from "../services/posts.service";
 //import ReactPaginate from 'react-paginate';
 
@@ -73,7 +74,7 @@ export const UserFeed: React.FC = () => {
     setCurrentPosts(posts.slice(indexOfFirstItem, indexOfLastItem));
     //probably need to update currentPost slice too
   };
-  */
+  
 
   const renderPosts = () => {
     return currentPosts.map((post:Post) => (
@@ -83,6 +84,7 @@ export const UserFeed: React.FC = () => {
       </div>
     ));
   };
+  */
 
   return (
     <PageLayout>
@@ -92,7 +94,7 @@ export const UserFeed: React.FC = () => {
         </h1>
         <div className="content__body">
           <div className="post-feed">
-          {renderPosts()}
+          <PostFeed posts={currentPosts}/>
           </div>
         </div>
         <div className="pagination">
