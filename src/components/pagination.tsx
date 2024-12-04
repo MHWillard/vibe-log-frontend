@@ -14,7 +14,7 @@ const Pagination = ({ nPages, currentPage, setCurrentPage }:{ nPages:number, cur
         <nav>
             <ul className='pagination justify-content-center'>
                 <li className="page-item">
-                <button className="page-link" onClick={prevPage}>Previous</button>
+                <button className="page-link" onClick={prevPage}> Prev </button>
                 </li>
                 {pageNumbers.map(pgNumber => (
                     <li key={pgNumber} 
